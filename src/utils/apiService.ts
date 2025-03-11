@@ -69,8 +69,8 @@ export const processMultipleNumbers = async (
   const results: PhoneNumberInfo[] = [];
   const errors: string[] = [];
   
-  // Обрабатываем по 5 номеров за раз
-  const batchSize = 5;
+  // Обрабатываем по 3 номера за раз
+  const batchSize = 3;
   
   for (let i = 0; i < numbers.length; i += batchSize) {
     const batch = numbers.slice(i, i + batchSize);
