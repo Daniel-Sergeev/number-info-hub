@@ -1,4 +1,3 @@
-
 import { toast } from "@/hooks/use-toast";
 
 export interface PhoneNumberInfo {
@@ -23,14 +22,12 @@ export const fetchPhoneNumberInfo = async (
   translit?: boolean
 ): Promise<PhoneNumberInfo | string | null> => {
   try {
-    // Clean the phone number
     const cleanNumber = phoneNumber.replace(/\D/g, '');
     
     if (cleanNumber.length < 10) {
       throw new Error('Недостаточно цифр для номера телефона');
     }
     
-    // Build query parameters
     const params = new URLSearchParams();
     params.append('num', cleanNumber);
     
@@ -49,10 +46,8 @@ export const fetchPhoneNumberInfo = async (
     }
     
     if (field) {
-      // Plain text response when field is specified
       return await response.text();
     } else {
-      // JSON response
       return await response.json();
     }
   } catch (error) {
@@ -69,7 +64,6 @@ export const processMultipleNumbers = async (
   const results: PhoneNumberInfo[] = [];
   const errors: string[] = [];
   
-  // Process in batches to avoid overwhelming the API
   const batchSize = 5;
   
   for (let i = 0; i < numbers.length; i += batchSize) {
@@ -92,7 +86,6 @@ export const processMultipleNumbers = async (
       }
     });
     
-    // Small delay between batches
     if (i + batchSize < numbers.length) {
       await new Promise(resolve => setTimeout(resolve, 500));
     }
