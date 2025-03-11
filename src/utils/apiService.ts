@@ -70,7 +70,7 @@ export const processMultipleNumbers = async (
   const errors: string[] = [];
   
   // Обрабатываем по 3 номера за раз
-  const batchSize = 3;
+  const batchSize = 2;
   
   for (let i = 0; i < numbers.length; i += batchSize) {
     const batch = numbers.slice(i, i + batchSize);
@@ -94,7 +94,7 @@ export const processMultipleNumbers = async (
     
     // Задержка в 2 секунды между пакетами запросов
     if (i + batchSize < numbers.length) {
-      await new Promise(resolve => setTimeout(resolve, 2000));
+      await new Promise(resolve => setTimeout(resolve, 300));
     }
   }
   
