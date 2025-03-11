@@ -69,8 +69,8 @@ export const processMultipleNumbers = async (
   const results: PhoneNumberInfo[] = [];
   const errors: string[] = [];
   
-  // Сильно уменьшаем количество запросов за раз (с 2 до 1)
-  const batchSize = 1;
+  // Обрабатываем по 5 номеров за раз
+  const batchSize = 5;
   
   for (let i = 0; i < numbers.length; i += batchSize) {
     const batch = numbers.slice(i, i + batchSize);
@@ -92,7 +92,7 @@ export const processMultipleNumbers = async (
       }
     });
     
-    // Увеличиваем задержку между запросами (с 1000мс до 2000мс)
+    // Задержка в 2 секунды между пакетами запросов
     if (i + batchSize < numbers.length) {
       await new Promise(resolve => setTimeout(resolve, 2000));
     }
