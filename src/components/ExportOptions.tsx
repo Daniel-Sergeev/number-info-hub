@@ -6,7 +6,7 @@ import { DownloadCloud, BarChart } from "lucide-react";
 import { PhoneNumberInfo, OperatorSummary } from "@/utils/apiService";
 import { prepareExportData, downloadAsFile } from "@/utils/formatters";
 import { Card } from "@/components/ui/card";
-import { toast } from "@/components/ui/sonner";
+import { toast } from "@/hooks/use-toast";
 
 interface ExportOptionsProps {
   results: PhoneNumberInfo[];

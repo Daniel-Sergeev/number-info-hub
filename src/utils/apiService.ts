@@ -1,5 +1,5 @@
 
-import { toast } from "@/components/ui/sonner";
+import { toast } from "@/hooks/use-toast";
 
 export interface PhoneNumberInfo {
   code: string;
