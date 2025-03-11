@@ -69,8 +69,8 @@ export const processMultipleNumbers = async (
   const results: PhoneNumberInfo[] = [];
   const errors: string[] = [];
   
-  // Reduce batch size from 5 to 2 to avoid rate limits
-  const batchSize = 2;
+  // Сильно уменьшаем количество запросов за раз (с 2 до 1)
+  const batchSize = 1;
   
   for (let i = 0; i < numbers.length; i += batchSize) {
     const batch = numbers.slice(i, i + batchSize);
@@ -92,9 +92,9 @@ export const processMultipleNumbers = async (
       }
     });
     
-    // Increase delay between batches from 500ms to 1000ms
+    // Увеличиваем задержку между запросами (с 1000мс до 2000мс)
     if (i + batchSize < numbers.length) {
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      await new Promise(resolve => setTimeout(resolve, 2000));
     }
   }
   
