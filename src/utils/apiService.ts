@@ -21,7 +21,7 @@ export const fetchPhoneNumberInfo = async (
   phoneNumber: string,
   field?: string,
   translit?: boolean
-): Promise<PhoneNumberInfo | string | null> {
+): Promise<PhoneNumberInfo | string | null> => {
   try {
     // Clean the phone number
     const cleanNumber = phoneNumber.replace(/\D/g, '');
