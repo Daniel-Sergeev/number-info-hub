@@ -19,12 +19,20 @@ const FileUpload = ({ onFileProcessed, isLoading }: FileUploadProps) => {
       const selectedFile = e.target.files[0];
       
       if (selectedFile.type !== 'text/plain') {
-        toast.error('Пожалуйста, загрузите файл в формате .txt');
+        toast({
+          title: "Ошибка",
+          description: "Пожалуйста, загрузите файл в формате .txt",
+          variant: "destructive"
+        });
         return;
       }
       
       if (selectedFile.size > 5 * 1024 * 1024) { // 5MB limit
-        toast.error('Файл слишком большой. Максимальный размер 5MB');
+        toast({
+          title: "Ошибка",
+          description: "Файл слишком большой. Максимальный размер 5MB",
+          variant: "destructive"
+        });
         return;
       }
       
@@ -51,18 +59,30 @@ const FileUpload = ({ onFileProcessed, isLoading }: FileUploadProps) => {
       const numbers = parsePhoneNumbers(text);
       
       if (numbers.length === 0) {
-        toast.error('В файле не обнаружено номеров телефонов');
+        toast({
+          title: "Ошибка",
+          description: "В файле не обнаружено номеров телефонов",
+          variant: "destructive"
+        });
         return;
       }
       
       if (numbers.length > 100) {
-        toast.warning('Обнаружено более 100 номеров, обработка может занять некоторое время');
+        toast({
+          title: "Предупреждение",
+          description: "Обнаружено более 100 номеров, обработка может занять некоторое время",
+          variant: "default"
+        });
       }
       
       onFileProcessed(numbers);
     } catch (error) {
       console.error('Error processing file:', error);
-      toast.error('Ошибка при обработке файла');
+      toast({
+        title: "Ошибка",
+        description: "Ошибка при обработке файла",
+        variant: "destructive"
+      });
     }
   };
   

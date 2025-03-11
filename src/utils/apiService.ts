@@ -1,3 +1,4 @@
+
 import { toast } from "@/hooks/use-toast";
 
 export interface PhoneNumberInfo {
@@ -53,7 +54,11 @@ export const fetchPhoneNumberInfo = async (
   } catch (error) {
     const errorMessage = error instanceof Error ? error.message : 'Неизвестная ошибка';
     console.error('Error fetching phone number info:', errorMessage);
-    toast.error(`Ошибка: ${errorMessage}`);
+    toast({
+      title: "Ошибка",
+      description: errorMessage,
+      variant: "destructive"
+    });
     return null;
   }
 };
@@ -92,7 +97,11 @@ export const processMultipleNumbers = async (
   }
   
   if (errors.length > 0) {
-    toast.warning(`Не удалось обработать ${errors.length} номер(ов)`);
+    toast({
+      title: "Предупреждение",
+      description: `Не удалось обработать ${errors.length} номер(ов)`,
+      variant: "default"
+    });
   }
   
   return results;

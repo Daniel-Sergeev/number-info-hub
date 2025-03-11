@@ -20,7 +20,11 @@ const ExportOptions = ({ results, operatorSummary }: ExportOptionsProps) => {
   
   const handleExport = (format: 'csv' | 'json' | 'text') => {
     if (results.length === 0) {
-      toast.error("Нет данных для экспорта");
+      toast({
+        title: "Ошибка",
+        description: "Нет данных для экспорта",
+        variant: "destructive"
+      });
       return;
     }
     
@@ -47,10 +51,18 @@ const ExportOptions = ({ results, operatorSummary }: ExportOptionsProps) => {
             
       downloadAsFile(exportData, filename, contentType);
       
-      toast.success(`Экспорт в формате ${format.toUpperCase()} успешно выполнен`);
+      toast({
+        title: "Успех",
+        description: `Экспорт в формате ${format.toUpperCase()} успешно выполнен`,
+        variant: "default"
+      });
     } catch (error) {
       console.error("Export error:", error);
-      toast.error("Ошибка при экспорте данных");
+      toast({
+        title: "Ошибка",
+        description: "Ошибка при экспорте данных",
+        variant: "destructive"
+      });
     }
   };
   
